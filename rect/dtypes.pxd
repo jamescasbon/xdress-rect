@@ -20,7 +20,7 @@ cimport numpy as np
 cimport xdress_extra_types
 
 # Cython imports for types
-
+from rect cimport cpp_rectangle
 
 cdef extern from "Python.h":
     ctypedef Py_ssize_t Py_ssize_t
@@ -139,4 +139,30 @@ cdef extern from "xdress_extra_types.h" namespace "xdress_extra_types":
         T * defnew() nogil except +
         T * renew(void *) nogil except +
         void deall(T *) nogil except +
+
+# int dtype
+ctypedef struct PyXDInt_Type:
+    Py_ssize_t ob_refcnt
+    PyTypeObject *ob_typ
+    int obval
+
+cdef object pyxd_int_getitem(void * data, void * arr)
+cdef int pyxd_int_setitem(object value, void * data, void * arr)
+cdef void pyxd_int_copyswapn(void * dest, np.npy_intp dstride, void * src, np.npy_intp sstride, np.npy_intp n, int swap, void * arr)
+cdef void pyxd_int_copyswap(void * dest, void * src, int swap, void * arr)
+cdef np.npy_bool pyxd_int_nonzero(void * data, void * arr)
+
+
+# cpp_rectangle.Rectangle dtype
+ctypedef struct PyXDRectangle_Type:
+    Py_ssize_t ob_refcnt
+    PyTypeObject *ob_typ
+    cpp_rectangle.Rectangle obval
+
+cdef object pyxd_rectangle_getitem(void * data, void * arr)
+cdef int pyxd_rectangle_setitem(object value, void * data, void * arr)
+cdef void pyxd_rectangle_copyswapn(void * dest, np.npy_intp dstride, void * src, np.npy_intp sstride, np.npy_intp n, int swap, void * arr)
+cdef void pyxd_rectangle_copyswap(void * dest, void * src, int swap, void * arr)
+cdef np.npy_bool pyxd_rectangle_nonzero(void * data, void * arr)
+
 

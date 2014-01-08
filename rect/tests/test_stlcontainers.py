@@ -19,5 +19,67 @@ from collections import Container, Mapping
 from rect import stlcontainers
 
 
+# MapIntDouble
+def test_map_int_double():
+    m = stlcontainers.MapIntDouble()
+    uismap = isinstance(-65.5555, Mapping) 
+    m[1] = 18
+    m[42] = -65.5555
+    import pprint
+    pprint.pprint(m)
+    assert_equal(len(m), 2)
+    if uismap:
+        for key, value in m[42].items():
+            print(key, value, -65.5555[key])
+            if isinstance(value, np.ndarray):
+                assert_almost_equal(value, -65.5555[key])
+            else:
+                assert_equal(value, -65.5555[key])
+    else:
+        assert_almost_equal(m[42], -65.5555)
+
+    m = stlcontainers.MapIntDouble({-65: 42.42, 18: 1.0})
+    assert_equal(len(m), 2)
+    if uismap:
+        for key, value in m[-65].items():
+            if isinstance(value, np.ndarray):
+                print(key, value, 42.42[key])
+                assert_almost_equal(value, 42.42[key])
+            else:
+                assert_equal(value, 42.42[key])
+    else:
+        assert_almost_equal(m[-65], 42.42)
+
+    n = stlcontainers.MapIntDouble(m, False)
+    assert_equal(len(n), 2)
+    if uismap:
+        for key, value in m[-65].items():
+            if isinstance(value, np.ndarray):
+                assert_almost_equal(value, 42.42[key])
+            else:
+                assert_equal(value, 42.42[key])
+    else:
+        assert_almost_equal(m[-65], 42.42)
+
+    # points to the same underlying map
+    n[42] = -65.5555
+    if uismap:
+        for key, value in m[42].items():
+            if isinstance(value, np.ndarray):
+                assert_almost_equal(value, -65.5555[key])
+            else:
+                assert_equal(value, -65.5555[key])
+    else:
+        assert_almost_equal(m[42], -65.5555)
+
+
+
+
+
+# Vector Int
+
+
+
+
 if __name__ == '__main__':
     nose.run()

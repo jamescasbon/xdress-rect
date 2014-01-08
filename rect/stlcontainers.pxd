@@ -25,5 +25,37 @@ cimport numpy as np
 
 
 # Cython Imports For Types
+from rect cimport cpp_rectangle
+
+# MapIntDouble
+cdef class _MapIterIntDouble(object):
+    cdef cpp_map[int, double].iterator * iter_now
+    cdef cpp_map[int, double].iterator * iter_end
+    cdef void init(_MapIterIntDouble, cpp_map[int, double] *)
+
+cdef class _MapIntDouble:
+    cdef cpp_map[int, double] * map_ptr
+    cdef public bint _free_map
+
+
+
+
+# MapIntRectangle
+cdef class _MapIterIntRectangle(object):
+    cdef cpp_map[int, cpp_rectangle.Rectangle].iterator * iter_now
+    cdef cpp_map[int, cpp_rectangle.Rectangle].iterator * iter_end
+    cdef void init(_MapIterIntRectangle, cpp_map[int, cpp_rectangle.Rectangle] *)
+
+cdef class _MapIntRectangle:
+    cdef cpp_map[int, cpp_rectangle.Rectangle] * map_ptr
+    cdef public bint _free_map
+
+
+
+
+# int vector
+
+
+# cpp_rectangle.Rectangle vector
 
 

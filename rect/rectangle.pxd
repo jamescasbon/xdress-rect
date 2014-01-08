@@ -8,6 +8,7 @@
 ################################################
 
 
+from cython.operator cimport dereference as deref
 from rect cimport cpp_rectangle
 
 
@@ -15,6 +16,34 @@ from rect cimport cpp_rectangle
 cdef class Rectangle:
     cdef void * _inst
     cdef public bint _free_inst
+    pass
+
+
+
+cdef public object _xdress_AreaHandlerStruct_op_proxy0
+cdef public double _xdress_AreaHandlerStruct_op_proxy_func0(int)
+cdef public object _xdress_AreaHandlerStruct_op_proxy1
+cdef public double _xdress_AreaHandlerStruct_op_proxy_func1(int)
+cdef public object _xdress_AreaHandlerStruct_op_proxy2
+cdef public double _xdress_AreaHandlerStruct_op_proxy_func2(int)
+cdef public object _xdress_AreaHandlerStruct_op_proxy3
+cdef public double _xdress_AreaHandlerStruct_op_proxy_func3(int)
+cdef public object _xdress_AreaHandlerStruct_op_proxy4
+cdef public double _xdress_AreaHandlerStruct_op_proxy_func4(int)
+cdef public object _xdress_AreaHandlerStruct_op_proxy5
+cdef public double _xdress_AreaHandlerStruct_op_proxy_func5(int)
+cdef public object _xdress_AreaHandlerStruct_op_proxy6
+cdef public double _xdress_AreaHandlerStruct_op_proxy_func6(int)
+cdef public object _xdress_AreaHandlerStruct_op_proxy7
+cdef public double _xdress_AreaHandlerStruct_op_proxy_func7(int)
+cdef unsigned int _current__xdress_AreaHandlerStruct_op_proxy_vtab_i
+cdef unsigned int _MAX_CALLBACKS_AreaHandlerStruct
+
+cdef class AreaHandlerStruct:
+    cdef void * _inst
+    cdef public bint _free_inst
+    cdef public object _op
+    cdef unsigned int _op_vtab_i
     pass
 
 

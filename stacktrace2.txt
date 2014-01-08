@@ -1,0 +1,156 @@
+ xdress --debug -p clang  && python setup.py build                                                                                                                                             ⏎ ✱ ◼
+autoall: discovering API names
+autoall: no API names to discover!
+autodescribe: registering Rectangle
+autodescribe: registering AreaHandlerStruct
+autodescribe: registering VoidAreaHandlerStruct
+dtypes: registering numpy dtypes
+stlwrap: registering C++ standard library types
+autodescribe: scraping C/C++ APIs from source
+autodescribe: describing Rectangle
+autodescribe: describing AreaHandlerStruct
+autodescribe: describing VoidAreaHandlerStruct
+cythongen: creating C/C++ API wrappers
+extratypes: generating extra type header & source files for xdress
+dtypes: generating numpy dtype wrappers
+stlwrap: generating C++ standard library wrappers & converters
+running build
+running build_py
+running build_ext
+cythoning rect/rectangle.pyx to rect/rectangle.cpp
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+        def __get__(self):
+            cdef object op_proxy
+            if self._op is None:
+                def op_proxy(_0):
+                
+                    cdef void c_call_rtn
+                             ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:151:30: Variable type 'void' is incomplete
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy0
+
+    call_rtn = _xdress_VoidAreaHandlerStruct_op_proxy0(int(_0))
+
+    return NULL
+          ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:35:11: Return with value in void function
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy1
+
+    call_rtn = _xdress_VoidAreaHandlerStruct_op_proxy1(int(_0))
+
+    return NULL
+          ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:46:11: Return with value in void function
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy2
+
+    call_rtn = _xdress_VoidAreaHandlerStruct_op_proxy2(int(_0))
+
+    return NULL
+          ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:57:11: Return with value in void function
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy3
+
+    call_rtn = _xdress_VoidAreaHandlerStruct_op_proxy3(int(_0))
+
+    return NULL
+          ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:68:11: Return with value in void function
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy4
+
+    call_rtn = _xdress_VoidAreaHandlerStruct_op_proxy4(int(_0))
+
+    return NULL
+          ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:79:11: Return with value in void function
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy5
+
+    call_rtn = _xdress_VoidAreaHandlerStruct_op_proxy5(int(_0))
+
+    return NULL
+          ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:90:11: Return with value in void function
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy6
+
+    call_rtn = _xdress_VoidAreaHandlerStruct_op_proxy6(int(_0))
+
+    return NULL
+          ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:101:11: Return with value in void function
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy7
+
+    call_rtn = _xdress_VoidAreaHandlerStruct_op_proxy7(int(_0))
+
+    return NULL
+          ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:112:11: Return with value in void function
+building 'rect.rectangle' extension
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -fPIC 
+-I/home/james/Src/xdress-rect -I/usr/lib/python2.7/site-packages/numpy/core/include -I/usr/include/python2.7 -c src/rectangle.cpp -o build/temp.linux-x86_64-2.7/src/rectangle.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -fPIC 
+-I/home/james/Src/xdress-rect -I/usr/lib/python2.7/site-packages/numpy/core/include -I/usr/include/python2.7 -c rect/rectangle.cpp -o build/temp.linux-x86_64-2.7/rect/rectangle.o
+rect/rectangle.cpp:1:2: error: #error Do not use this file, it is the result of a failed Cython compilation.
+ #error Do not use this file, it is the result of a failed Cython compilation.
+  ^
+error: command 'gcc' failed with exit status 1
+

@@ -26,10 +26,13 @@ np.import_array()
 cimport xdress_extra_types
 
 # Cython Imports For Types
-
+from rect cimport cpp_rectangle
+cimport dtypes
+cimport rectangle
 
 # Imports For Types
-
+import rectangle
+import dtypes
 
 if PY_MAJOR_VERSION >= 3:
     basestring = str
@@ -41,4 +44,313 @@ cdef extern from *:
     cdef void emit_ifpy3k "#if PY_MAJOR_VERSION == 3 //" ()
     cdef void emit_else "#else //" ()
     cdef void emit_endif "#endif //" ()
+
+# Map(Int, Double)
+cdef class _MapIterIntDouble(object):
+    cdef void init(self, cpp_map[int, double] * map_ptr):
+        cdef cpp_map[int, double].iterator * itn = <cpp_map[int, double].iterator *> malloc(sizeof(map_ptr.begin()))
+        itn[0] = map_ptr.begin()
+        self.iter_now = itn
+
+        cdef cpp_map[int, double].iterator * ite = <cpp_map[int, double].iterator *> malloc(sizeof(map_ptr.end()))
+        ite[0] = map_ptr.end()
+        self.iter_end = ite
+
+    def __dealloc__(self):
+        free(self.iter_now)
+        free(self.iter_end)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        cdef cpp_map[int, double].iterator inow = deref(self.iter_now)
+        cdef cpp_map[int, double].iterator iend = deref(self.iter_end)
+
+        if inow != iend:
+
+            pyval = int(deref(inow).first)
+        else:
+            raise StopIteration
+
+        inc(deref(self.iter_now))
+        return pyval
+
+cdef class _MapIntDouble:
+    def __cinit__(self, new_map=True, bint free_map=True):
+        cdef pair[int, double] item
+        cdef cpp_map[int, double] * map_ptr
+
+
+
+        # Decide how to init map, if at all
+        if isinstance(new_map, _MapIntDouble):
+            self.map_ptr = (<_MapIntDouble> new_map).map_ptr
+        elif isinstance(new_map, np.generic) and np.PyArray_DescrFromScalar(new_map).type_num == np.NPY_OBJECT:
+            # scalars are copies, sadly not views, so we need to re-copy
+            if self.map_ptr == NULL:
+                self.map_ptr = new cpp_map[int, double]()
+            np.PyArray_ScalarAsCtype(new_map, &map_ptr)
+            self.map_ptr[0] = map_ptr[0]
+        elif hasattr(new_map, 'items'):
+            self.map_ptr = new cpp_map[int, double]()
+            for key, value in new_map.items():
+
+
+                item = pair[int, double](<int> key, <double> value)
+                self.map_ptr.insert(item)
+        elif hasattr(new_map, '__len__'):
+            self.map_ptr = new cpp_map[int, double]()
+            for key, value in new_map:
+
+
+                item = pair[int, double](<int> key, <double> value)
+                self.map_ptr.insert(item)
+        elif bool(new_map):
+            self.map_ptr = new cpp_map[int, double]()
+
+        # Store free_map
+        self._free_map = free_map
+
+    def __dealloc__(self):
+        if self._free_map:
+            del self.map_ptr
+
+    def __contains__(self, key):
+        cdef int k
+
+        if not isinstance(key, int):
+            return False
+
+        k = <int> key
+
+        if 0 < self.map_ptr.count(k):
+            return True
+        else:
+            return False
+
+    def __len__(self):
+        return self.map_ptr.size()
+
+    def __iter__(self):
+        cdef _MapIterIntDouble mi = _MapIterIntDouble()
+        mi.init(self.map_ptr)
+        return mi
+
+    def __getitem__(self, key):
+        cdef int k
+        cdef double v
+
+
+        if not isinstance(key, int):
+            raise TypeError("Only integer keys are valid.")
+
+        k = <int> key
+
+        if 0 < self.map_ptr.count(k):
+            v = deref(self.map_ptr)[k]
+
+            return float(deref(self.map_ptr)[k])
+        else:
+            raise KeyError
+
+    def __setitem__(self, key, value):
+
+
+        cdef pair[int, double] item
+
+
+        item = pair[int, double](<int> key, <double> value)
+        if 0 < self.map_ptr.count(<int> key):
+            self.map_ptr.erase(<int> key)
+        self.map_ptr.insert(item)
+
+    def __delitem__(self, key):
+        cdef int k
+
+        if key in self:
+
+            k = <int> key
+            self.map_ptr.erase(k)
+
+
+class MapIntDouble(_MapIntDouble, collections.MutableMapping):
+    """Wrapper class for C++ standard library maps of type <integer, double>.
+    Provides dictionary like interface on the Python level.
+
+    Parameters
+    ----------
+    new_map : bool or dict-like
+        Boolean on whether to make a new map or not, or dict-like object
+        with keys and values which are castable to the appropriate type.
+    free_map : bool
+        Flag for whether the pointer to the C++ map should be deallocated
+        when the wrapper is dereferenced.
+    """
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __repr__(self):
+        return "{" + ", ".join(["{0}: {1}".format(repr(key), repr(value)) for key, value in self.items()]) + "}"
+
+
+
+# Map(Int, Rectangle)
+cdef class _MapIterIntRectangle(object):
+    cdef void init(self, cpp_map[int, cpp_rectangle.Rectangle] * map_ptr):
+        cdef cpp_map[int, cpp_rectangle.Rectangle].iterator * itn = <cpp_map[int, cpp_rectangle.Rectangle].iterator *> malloc(sizeof(map_ptr.begin()))
+        itn[0] = map_ptr.begin()
+        self.iter_now = itn
+
+        cdef cpp_map[int, cpp_rectangle.Rectangle].iterator * ite = <cpp_map[int, cpp_rectangle.Rectangle].iterator *> malloc(sizeof(map_ptr.end()))
+        ite[0] = map_ptr.end()
+        self.iter_end = ite
+
+    def __dealloc__(self):
+        free(self.iter_now)
+        free(self.iter_end)
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        cdef cpp_map[int, cpp_rectangle.Rectangle].iterator inow = deref(self.iter_now)
+        cdef cpp_map[int, cpp_rectangle.Rectangle].iterator iend = deref(self.iter_end)
+
+        if inow != iend:
+
+            pyval = int(deref(inow).first)
+        else:
+            raise StopIteration
+
+        inc(deref(self.iter_now))
+        return pyval
+
+cdef class _MapIntRectangle:
+    def __cinit__(self, new_map=True, bint free_map=True):
+        cdef pair[int, cpp_rectangle.Rectangle] item
+        cdef cpp_map[int, cpp_rectangle.Rectangle] * map_ptr
+
+        cdef rectangle.Rectangle value_proxy
+
+        # Decide how to init map, if at all
+        if isinstance(new_map, _MapIntRectangle):
+            self.map_ptr = (<_MapIntRectangle> new_map).map_ptr
+        elif isinstance(new_map, np.generic) and np.PyArray_DescrFromScalar(new_map).type_num == np.NPY_OBJECT:
+            # scalars are copies, sadly not views, so we need to re-copy
+            if self.map_ptr == NULL:
+                self.map_ptr = new cpp_map[int, cpp_rectangle.Rectangle]()
+            np.PyArray_ScalarAsCtype(new_map, &map_ptr)
+            self.map_ptr[0] = map_ptr[0]
+        elif hasattr(new_map, 'items'):
+            self.map_ptr = new cpp_map[int, cpp_rectangle.Rectangle]()
+            for key, value in new_map.items():
+
+                value_proxy = <rectangle.Rectangle> value
+                item = pair[int, cpp_rectangle.Rectangle](<int> key, (<cpp_rectangle.Rectangle *> value_proxy._inst)[0])
+                self.map_ptr.insert(item)
+        elif hasattr(new_map, '__len__'):
+            self.map_ptr = new cpp_map[int, cpp_rectangle.Rectangle]()
+            for key, value in new_map:
+
+                value_proxy = <rectangle.Rectangle> value
+                item = pair[int, cpp_rectangle.Rectangle](<int> key, (<cpp_rectangle.Rectangle *> value_proxy._inst)[0])
+                self.map_ptr.insert(item)
+        elif bool(new_map):
+            self.map_ptr = new cpp_map[int, cpp_rectangle.Rectangle]()
+
+        # Store free_map
+        self._free_map = free_map
+
+    def __dealloc__(self):
+        if self._free_map:
+            del self.map_ptr
+
+    def __contains__(self, key):
+        cdef int k
+
+        if not isinstance(key, int):
+            return False
+
+        k = <int> key
+
+        if 0 < self.map_ptr.count(k):
+            return True
+        else:
+            return False
+
+    def __len__(self):
+        return self.map_ptr.size()
+
+    def __iter__(self):
+        cdef _MapIterIntRectangle mi = _MapIterIntRectangle()
+        mi.init(self.map_ptr)
+        return mi
+
+    def __getitem__(self, key):
+        cdef int k
+        cdef cpp_rectangle.Rectangle v
+
+        cdef rectangle.Rectangle v_proxy
+        if not isinstance(key, int):
+            raise TypeError("Only integer keys are valid.")
+
+        k = <int> key
+
+        if 0 < self.map_ptr.count(k):
+            v = deref(self.map_ptr)[k]
+            v_proxy = rectangle.Rectangle()
+            (<cpp_rectangle.Rectangle *> v_proxy._inst)[0] = deref(self.map_ptr)[k]
+            return v_proxy
+        else:
+            raise KeyError
+
+    def __setitem__(self, key, value):
+
+        cdef rectangle.Rectangle value_proxy
+        cdef pair[int, cpp_rectangle.Rectangle] item
+
+        value_proxy = <rectangle.Rectangle> value
+        item = pair[int, cpp_rectangle.Rectangle](<int> key, (<cpp_rectangle.Rectangle *> value_proxy._inst)[0])
+        if 0 < self.map_ptr.count(<int> key):
+            self.map_ptr.erase(<int> key)
+        self.map_ptr.insert(item)
+
+    def __delitem__(self, key):
+        cdef int k
+
+        if key in self:
+
+            k = <int> key
+            self.map_ptr.erase(k)
+
+
+class MapIntRectangle(_MapIntRectangle, collections.MutableMapping):
+    """Wrapper class for C++ standard library maps of type <integer, Rectangle>.
+    Provides dictionary like interface on the Python level.
+
+    Parameters
+    ----------
+    new_map : bool or dict-like
+        Boolean on whether to make a new map or not, or dict-like object
+        with keys and values which are castable to the appropriate type.
+    free_map : bool
+        Flag for whether the pointer to the C++ map should be deallocated
+        when the wrapper is dereferenced.
+    """
+
+    def __str__(self):
+        return self.__repr__()
+
+    def __repr__(self):
+        return "{" + ", ".join(["{0}: {1}".format(repr(key), repr(value)) for key, value in self.items()]) + "}"
+
+
+
+# int vector
+
+
+# cpp_rectangle.Rectangle vector
+
 

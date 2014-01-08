@@ -2,6 +2,8 @@
 
 using namespace shapes;
 
+Rectangle::Rectangle() { }
+
 Rectangle::Rectangle(int X0, int Y0, int X1, int Y1)
 {
     x0 = X0;
@@ -10,9 +12,9 @@ Rectangle::Rectangle(int X0, int Y0, int X1, int Y1)
     y1 = Y1;
 }
 
-Rectangle::~Rectangle()
-{
-}
+// Rectangle::~Rectangle()
+// {
+// }
 
 int Rectangle::getLength()
 {
@@ -37,7 +39,27 @@ void Rectangle::move(int dx, int dy)
     y1 += dy;
 }
 
-void Rectangle::do_with_area(area_handler callback, void* context) 
+// Example 1
+double Rectangle::do_with_area(AreaHandlerStruct x) 
 { 
-    callback(context, 10);
+    return x.op(10);
 }
+
+// Example 2
+// void Rectangle::do_with_area(VoidAreaHandlerStruct x) 
+// { 
+//     x.op(10);
+// }
+
+// Example 3
+// void Rectangle::do_with_area(area_handler callback, void* context) 
+// { 
+//     return callback(context, 10);
+// }
+
+// Example 4
+// void Rectangle::do_with_area(void (*op)(int)) 
+// {
+//     *op(10);
+// }
+// 

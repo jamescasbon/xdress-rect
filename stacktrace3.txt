@@ -1,0 +1,55 @@
+xdress --debug -p clang  && python setup.py build                                                                                                                                             ⏎ ✱ ◼
+autoall: discovering API names
+autoall: no API names to discover!
+autodescribe: registering Rectangle
+autodescribe: registering AreaHandlerStruct
+dtypes: registering numpy dtypes
+stlwrap: registering C++ standard library types
+autodescribe: scraping C/C++ APIs from source
+autodescribe: describing Rectangle
+autodescribe: describing AreaHandlerStruct
+cythongen: creating C/C++ API wrappers
+extratypes: generating extra type header & source files for xdress
+dtypes: generating numpy dtype wrappers
+stlwrap: generating C++ standard library wrappers & converters
+running build
+running build_py
+running build_ext
+cythoning rect/rectangle.pyx to rect/rectangle.cpp
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+        int x1
+        int y0
+        int y1
+
+        # methods
+        void do_with_area(void (*{type_name})(void *, int), void *) except +
+                                ^
+------------------------------------------------------------
+
+rect/cpp_rectangle.pxd:43:33: Expected ')', found '{'
+
+Error compiling Cython file:
+------------------------------------------------------------
+...
+    
+    # methods
+    def _rectangle_do_with_area_0(self, _0, _1):
+        """do_with_area(self, , )
+        no docstring for do_with_area, please file a bug report!"""
+        (<cpp_rectangle.Rectangle *> self._inst).do_with_area(cdef void _0_proxy(void * _0, int _1):
+                                                             ^
+------------------------------------------------------------
+
+rect/rectangle.pyx:353:62: Expected an identifier or literal
+building 'rect.rectangle' extension
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -fPIC 
+-I/home/james/Src/xdress-rect -I/usr/lib/python2.7/site-packages/numpy/core/include -I/usr/include/python2.7 -c src/rectangle.cpp -o build/temp.linux-x86_64-2.7/src/rectangle.o
+gcc -pthread -fno-strict-aliasing -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -DNDEBUG -march=x86-64 -mtune=generic -O2 -pipe -fstack-protector --param=ssp-buffer-size=4 -fPIC 
+-I/home/james/Src/xdress-rect -I/usr/lib/python2.7/site-packages/numpy/core/include -I/usr/include/python2.7 -c rect/rectangle.cpp -o build/temp.linux-x86_64-2.7/rect/rectangle.o
+rect/rectangle.cpp:1:2: error: #error Do not use this file, it is the result of a failed Cython compilation.
+ #error Do not use this file, it is the result of a failed Cython compilation.
+  ^
+error: command 'gcc' failed with exit status 1

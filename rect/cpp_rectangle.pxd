@@ -9,11 +9,28 @@
 
 
 from cython.operator cimport dereference as deref
+from rect cimport cpp_rectangle
+
+cdef extern from "src/rectangle.h" namespace "shapes":
+
+    cdef cppclass AreaHandlerStruct:
+        # constructors
+        AreaHandlerStruct() except +
+
+        # attributes
+        double (*op)(int)
+
+        # methods
+
+        pass
+
+
 
 cdef extern from "src/rectangle.h" namespace "shapes":
 
     cdef cppclass Rectangle:
         # constructors
+        Rectangle() except +
         Rectangle(int, int, int, int) except +
 
         # attributes
@@ -23,7 +40,7 @@ cdef extern from "src/rectangle.h" namespace "shapes":
         int y1
 
         # methods
-        void do_with_area(void (*{type_name})(void *, int), void *) except +
+        double do_with_area(AreaHandlerStruct) except +
         int getArea() except +
         int getHeight() except +
         int getLength() except +
