@@ -13,12 +13,12 @@ from rect cimport cpp_rectangle
 
 cdef extern from "src/rectangle.h" namespace "shapes":
 
-    cdef cppclass AreaHandlerStruct:
+    cdef cppclass VoidAreaHandlerStruct:
         # constructors
-        AreaHandlerStruct() except +
+        VoidAreaHandlerStruct() except +
 
         # attributes
-        double (*op)(int)
+        void (*op)(int)
 
         # methods
 
@@ -40,7 +40,7 @@ cdef extern from "src/rectangle.h" namespace "shapes":
         int y1
 
         # methods
-        double do_with_area(AreaHandlerStruct) except +
+        void do_with_area(VoidAreaHandlerStruct) except +
         int getArea() except +
         int getHeight() except +
         int getLength() except +
