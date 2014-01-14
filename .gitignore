@@ -1,1 +1,4 @@
 build
+*.so
+*.o
+*.pyc

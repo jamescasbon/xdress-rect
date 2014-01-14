@@ -8,19 +8,24 @@ import numpy as np
 incdirs = [os.path.join(os.getcwd()), np.get_include()]  # DIFF: removed 'src'
 
 ext_modules = [
-    Extension("rect.rectangle", ['src/rectangle.cpp', "rect/rectangle.pyx", ],
-    	      include_dirs=incdirs, language="c++"),
+    Extension("rect.rectangle", ["rect/rectangle.pyx", ],
+    	      include_dirs=incdirs, language="c++",
+              libraries=['rectangle']),
 
     Extension("rect.xdress_extra_types", ["rect/xdress_extra_types.pyx"], # DIFF: s/rect/xdress/
               include_dirs=incdirs, language="c++"),
 
-    # FIXME: we are compiling the object file for rectangle twice
-    Extension("rect.dtypes", ['src/rectangle.cpp', "rect/dtypes.pyx"],
+    # # FIXME: we are compiling the object file for rectangle twice
+    Extension("rect.dtypes", ["rect/dtypes.pyx"],
               include_dirs=incdirs, language="c++"),
 
-    Extension("rect.stlcontainers", ['src/rectangle.cpp', "rect/stlcontainers.pyx"],
+    Extension("rect.stlcontainers", ["rect/stlcontainers.pyx"],
               include_dirs=incdirs, language="c++"),
    ]
+
+for module in ext_modules:
+    module.extra_compile_args = ['--std=c++11'];
+    module.libraries = ['rectangle']
 
 setup(
   name = 'rect',

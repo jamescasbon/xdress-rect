@@ -8,7 +8,7 @@ namespace shapes {
 
     // Example 2.  Doesn't like void in callback function, see stacktrace2.txt
     // This fails at generation of the wrapper class, before even the callback
-    // typedef struct VoidAreaHandlerStruct { void (*op)(int); } VoidAreaHandlerStruct;
+    typedef struct VoidAreaHandlerStruct { void (*op)(int); } VoidAreaHandlerStruct;
 
     // Example 3.  How can I expose a typedef??
     // Fails to generate the callback, see stacktrace2.txt
@@ -32,7 +32,7 @@ namespace shapes {
         double do_with_area(AreaHandlerStruct x);
 
         // Example 2.
-        // void do_with_area(VoidAreaHandlerStruct x);
+        void do_with_area(VoidAreaHandlerStruct x);
 
         // Example 3
         // void do_with_area(area_handler, void*);
@@ -41,4 +41,15 @@ namespace shapes {
         // void do_with_area(void (*op)(int));
 
     };
+
 }
+
+int normal_add(int, int);
+
+template<class T, class U>
+auto template_add(T t, U u) -> decltype(t + u)
+{
+    return t + u;
+}
+
+extern int iitadd = template_add<int, int>(3, 6);

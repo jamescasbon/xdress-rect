@@ -28,6 +28,21 @@ cdef extern from "src/rectangle.h" namespace "shapes":
 
 cdef extern from "src/rectangle.h" namespace "shapes":
 
+    cdef cppclass VoidAreaHandlerStruct:
+        # constructors
+        VoidAreaHandlerStruct() except +
+
+        # attributes
+        void (*op)(int)
+
+        # methods
+
+        pass
+
+
+
+cdef extern from "src/rectangle.h" namespace "shapes":
+
     cdef cppclass Rectangle:
         # constructors
         Rectangle() except +
@@ -41,11 +56,26 @@ cdef extern from "src/rectangle.h" namespace "shapes":
 
         # methods
         double do_with_area(AreaHandlerStruct) except +
+        void do_with_area(VoidAreaHandlerStruct) except +
         int getArea() except +
         int getHeight() except +
         int getLength() except +
         void move(int, int) except +
         pass
+
+
+
+# function signatures
+cdef extern from "src/rectangle.h" :
+
+    int normal_add(int, int) except +
+
+
+
+# function signatures
+cdef extern from "src/rectangle.h" :
+
+    int template_add_int_int "template_add< int, int >" (int, int) except +
 
 
 

@@ -8,6 +8,7 @@
 ################################################
 """
 """
+cimport cpp_rectangle
 cimport dtypes
 cimport rectangle
 from cython.operator cimport dereference as deref
@@ -17,6 +18,245 @@ from rect cimport cpp_rectangle
 
 import dtypes
 import warnings
+
+#
+# Function pointer helpers for VoidAreaHandlerStruct.op
+#
+_current__xdress_VoidAreaHandlerStruct_op_proxy_vtab_i = 0
+
+_xdress_VoidAreaHandlerStruct_op_proxy0 = None
+
+cdef void _xdress_VoidAreaHandlerStruct_op_proxy_func0(int _0):
+
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy0
+
+    _xdress_VoidAreaHandlerStruct_op_proxy0(int(_0))
+
+    return 
+
+_xdress_VoidAreaHandlerStruct_op_proxy1 = None
+
+cdef void _xdress_VoidAreaHandlerStruct_op_proxy_func1(int _0):
+
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy1
+
+    _xdress_VoidAreaHandlerStruct_op_proxy1(int(_0))
+
+    return 
+
+_xdress_VoidAreaHandlerStruct_op_proxy2 = None
+
+cdef void _xdress_VoidAreaHandlerStruct_op_proxy_func2(int _0):
+
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy2
+
+    _xdress_VoidAreaHandlerStruct_op_proxy2(int(_0))
+
+    return 
+
+_xdress_VoidAreaHandlerStruct_op_proxy3 = None
+
+cdef void _xdress_VoidAreaHandlerStruct_op_proxy_func3(int _0):
+
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy3
+
+    _xdress_VoidAreaHandlerStruct_op_proxy3(int(_0))
+
+    return 
+
+_xdress_VoidAreaHandlerStruct_op_proxy4 = None
+
+cdef void _xdress_VoidAreaHandlerStruct_op_proxy_func4(int _0):
+
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy4
+
+    _xdress_VoidAreaHandlerStruct_op_proxy4(int(_0))
+
+    return 
+
+_xdress_VoidAreaHandlerStruct_op_proxy5 = None
+
+cdef void _xdress_VoidAreaHandlerStruct_op_proxy_func5(int _0):
+
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy5
+
+    _xdress_VoidAreaHandlerStruct_op_proxy5(int(_0))
+
+    return 
+
+_xdress_VoidAreaHandlerStruct_op_proxy6 = None
+
+cdef void _xdress_VoidAreaHandlerStruct_op_proxy_func6(int _0):
+
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy6
+
+    _xdress_VoidAreaHandlerStruct_op_proxy6(int(_0))
+
+    return 
+
+_xdress_VoidAreaHandlerStruct_op_proxy7 = None
+
+cdef void _xdress_VoidAreaHandlerStruct_op_proxy_func7(int _0):
+
+
+    global _xdress_VoidAreaHandlerStruct_op_proxy7
+
+    _xdress_VoidAreaHandlerStruct_op_proxy7(int(_0))
+
+    return 
+
+
+
+_MAX_CALLBACKS_VoidAreaHandlerStruct = 8
+
+cdef class VoidAreaHandlerStruct:
+    """no docstring for {'tarbase': 'rectangle', 'tarname': 'VoidAreaHandlerStruct', 'language': 'c++', 'srcname': 'VoidAreaHandlerStruct', 'sidecars': (), 'incfiles': ('src/rectangle.h',), 'srcfiles': ('src/rectangle.cpp', 'src/rectangle.h')}, please file a bug report!"""
+
+
+
+    # constuctors
+    def __cinit__(self, *args, **kwargs):
+        self._inst = NULL
+        self._free_inst = True
+
+        # cached property defaults
+        self._op_vtab_i = 9
+        self._op = None
+
+    def __init__(self, ):
+        """VoidAreaHandlerStruct(self)
+        """
+        self._inst = malloc(sizeof(cpp_rectangle.VoidAreaHandlerStruct))
+        (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst)[0] = cpp_rectangle.VoidAreaHandlerStruct()
+    
+    
+    def __dealloc__(self):
+        if self._free_inst:
+            free(self._inst)
+
+    # attributes
+    property op:
+        """no docstring for op, please file a bug report!"""
+        def __get__(self):
+            cdef object op_proxy
+            if self._op is None:
+                def op_proxy(_0):
+                
+                
+                    if (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op == NULL:
+                        raise RuntimeError("(<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op is NULL and may not be safely called!")
+                
+                    (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op(<int> _0)
+                
+            return self._op
+    
+        def __set__(self, value):
+            if not callable(value):
+                raise ValueError("{0!r} is not callable but VoidAreaHandlerStruct.op is a function pointer!".format(value))
+            cdef unsigned int vtab_i
+            self._op = value
+            global _xdress_VoidAreaHandlerStruct_op_proxy0, _xdress_VoidAreaHandlerStruct_op_proxy1, _xdress_VoidAreaHandlerStruct_op_proxy2, _xdress_VoidAreaHandlerStruct_op_proxy3, _xdress_VoidAreaHandlerStruct_op_proxy4, _xdress_VoidAreaHandlerStruct_op_proxy5, _xdress_VoidAreaHandlerStruct_op_proxy6, _xdress_VoidAreaHandlerStruct_op_proxy7, _current__xdress_VoidAreaHandlerStruct_op_proxy_vtab_i
+            if _xdress_VoidAreaHandlerStruct_op_proxy0 is None:
+                vtab_i = 0
+            elif _xdress_VoidAreaHandlerStruct_op_proxy1 is None:
+                vtab_i = 1
+            elif _xdress_VoidAreaHandlerStruct_op_proxy2 is None:
+                vtab_i = 2
+            elif _xdress_VoidAreaHandlerStruct_op_proxy3 is None:
+                vtab_i = 3
+            elif _xdress_VoidAreaHandlerStruct_op_proxy4 is None:
+                vtab_i = 4
+            elif _xdress_VoidAreaHandlerStruct_op_proxy5 is None:
+                vtab_i = 5
+            elif _xdress_VoidAreaHandlerStruct_op_proxy6 is None:
+                vtab_i = 6
+            elif _xdress_VoidAreaHandlerStruct_op_proxy7 is None:
+                vtab_i = 7
+            else:
+                warnings.warn("Ran out of available callbacks for VoidAreaHandlerStruct.op, overriding existing callback.", RuntimeWarning)
+                vtab_i = _current__xdress_VoidAreaHandlerStruct_op_proxy_vtab_i
+                _current__xdress_VoidAreaHandlerStruct_op_proxy_vtab_i = (_current__xdress_VoidAreaHandlerStruct_op_proxy_vtab_i+1)%8
+            self._op_vtab_i = vtab_i
+            if vtab_i == 0:
+                _xdress_VoidAreaHandlerStruct_op_proxy0 = value
+                (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op = _xdress_VoidAreaHandlerStruct_op_proxy_func0
+            elif vtab_i == 1:
+                _xdress_VoidAreaHandlerStruct_op_proxy1 = value
+                (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op = _xdress_VoidAreaHandlerStruct_op_proxy_func1
+            elif vtab_i == 2:
+                _xdress_VoidAreaHandlerStruct_op_proxy2 = value
+                (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op = _xdress_VoidAreaHandlerStruct_op_proxy_func2
+            elif vtab_i == 3:
+                _xdress_VoidAreaHandlerStruct_op_proxy3 = value
+                (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op = _xdress_VoidAreaHandlerStruct_op_proxy_func3
+            elif vtab_i == 4:
+                _xdress_VoidAreaHandlerStruct_op_proxy4 = value
+                (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op = _xdress_VoidAreaHandlerStruct_op_proxy_func4
+            elif vtab_i == 5:
+                _xdress_VoidAreaHandlerStruct_op_proxy5 = value
+                (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op = _xdress_VoidAreaHandlerStruct_op_proxy_func5
+            elif vtab_i == 6:
+                _xdress_VoidAreaHandlerStruct_op_proxy6 = value
+                (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op = _xdress_VoidAreaHandlerStruct_op_proxy_func6
+            elif vtab_i == 7:
+                _xdress_VoidAreaHandlerStruct_op_proxy7 = value
+                (<cpp_rectangle.VoidAreaHandlerStruct *> self._inst).op = _xdress_VoidAreaHandlerStruct_op_proxy_func7
+    
+    def _deref_op_callback(self):
+        "Warning: this can have dangerous side effects!"
+        cdef unsigned int vtab_i
+        self._op = None
+        if self._op_vtab_i < 9:
+            vtab_i = self._op_vtab_i
+            self._op_vtab_i = 9
+            if vtab_i == 0:
+                global _xdress_VoidAreaHandlerStruct_op_proxy0
+                _xdress_VoidAreaHandlerStruct_op_proxy0 = None
+            elif vtab_i == 1:
+                global _xdress_VoidAreaHandlerStruct_op_proxy1
+                _xdress_VoidAreaHandlerStruct_op_proxy1 = None
+            elif vtab_i == 2:
+                global _xdress_VoidAreaHandlerStruct_op_proxy2
+                _xdress_VoidAreaHandlerStruct_op_proxy2 = None
+            elif vtab_i == 3:
+                global _xdress_VoidAreaHandlerStruct_op_proxy3
+                _xdress_VoidAreaHandlerStruct_op_proxy3 = None
+            elif vtab_i == 4:
+                global _xdress_VoidAreaHandlerStruct_op_proxy4
+                _xdress_VoidAreaHandlerStruct_op_proxy4 = None
+            elif vtab_i == 5:
+                global _xdress_VoidAreaHandlerStruct_op_proxy5
+                _xdress_VoidAreaHandlerStruct_op_proxy5 = None
+            elif vtab_i == 6:
+                global _xdress_VoidAreaHandlerStruct_op_proxy6
+                _xdress_VoidAreaHandlerStruct_op_proxy6 = None
+            elif vtab_i == 7:
+                global _xdress_VoidAreaHandlerStruct_op_proxy7
+                _xdress_VoidAreaHandlerStruct_op_proxy7 = None
+    
+    
+    # methods
+    
+
+    pass
+
+
+
+def template_add_int_int(t, u):
+    """template_add_int_int(t, u)
+    no docstring for template_add_int_int, please file a bug report!"""
+    cdef int rtnval
+    rtnval = cpp_rectangle.template_add_int_int(<int> t, <int> u)
+    return int(rtnval)
+
+
 
 #
 # Function pointer helpers for AreaHandlerStruct.op
@@ -250,6 +490,15 @@ cdef class AreaHandlerStruct:
 
 
 
+def normal_add(t, u):
+    """normal_add(t, u)
+    no docstring for normal_add, please file a bug report!"""
+    cdef int rtnval
+    rtnval = cpp_rectangle.normal_add(<int> t, <int> u)
+    return int(rtnval)
+
+
+
 
 
 cdef class Rectangle:
@@ -347,7 +596,7 @@ cdef class Rectangle:
     
     
     # methods
-    def do_with_area(self, x):
+    def _rectangle_do_with_area_0(self, x):
         """do_with_area(self, x)
         no docstring for do_with_area, please file a bug report!"""
         cdef AreaHandlerStruct x_proxy
@@ -356,6 +605,38 @@ cdef class Rectangle:
         rtnval = (<cpp_rectangle.Rectangle *> self._inst).do_with_area((<cpp_rectangle.AreaHandlerStruct *> x_proxy._inst)[0])
         return float(rtnval)
     
+    
+    def _rectangle_do_with_area_1(self, x):
+        """do_with_area(self, x)
+        no docstring for do_with_area, please file a bug report!"""
+        cdef VoidAreaHandlerStruct x_proxy
+        x_proxy = <VoidAreaHandlerStruct> x
+        (<cpp_rectangle.Rectangle *> self._inst).do_with_area((<cpp_rectangle.VoidAreaHandlerStruct *> x_proxy._inst)[0])
+    
+    
+    _rectangle_do_with_area_0_argtypes = frozenset(((0, AreaHandlerStruct), ("x", AreaHandlerStruct)))
+    _rectangle_do_with_area_1_argtypes = frozenset(((0, VoidAreaHandlerStruct), ("x", VoidAreaHandlerStruct)))
+    
+    def do_with_area(self, *args, **kwargs):
+        """do_with_area(self, x)
+        no docstring for do_with_area, please file a bug report!"""
+        types = set([(i, type(a)) for i, a in enumerate(args)])
+        types.update([(k, type(v)) for k, v in kwargs.items()])
+        # vtable-like dispatch for exactly matching types
+        if types <= self._rectangle_do_with_area_0_argtypes:
+            return self._rectangle_do_with_area_0(*args, **kwargs)
+        if types <= self._rectangle_do_with_area_1_argtypes:
+            return self._rectangle_do_with_area_1(*args, **kwargs)
+        # duck-typed dispatch based on whatever works!
+        try:
+            return self._rectangle_do_with_area_0(*args, **kwargs)
+        except (RuntimeError, TypeError, NameError):
+            pass
+        try:
+            return self._rectangle_do_with_area_1(*args, **kwargs)
+        except (RuntimeError, TypeError, NameError):
+            pass
+        raise RuntimeError('method do_with_area() could not be dispatched')
     
     def getArea(self, ):
         """getArea(self)
@@ -394,6 +675,14 @@ cdef class Rectangle:
 
 
 
+#
+# Function Dispatchers
+#
+
+# template_add dispatcher
+template_add = {}
+template_add['int32', 'int32'] = template_add_int_int
+template_add[int, int] = template_add_int_int
 
 
 {'cpppxd_footer': '', 'pyx_header': '', 'pxd_header': '', 'pxd_footer': '', 'cpppxd_header': '', 'pyx_footer': ''}

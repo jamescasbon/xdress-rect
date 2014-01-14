@@ -46,10 +46,10 @@ double Rectangle::do_with_area(AreaHandlerStruct x)
 }
 
 // Example 2
-// void Rectangle::do_with_area(VoidAreaHandlerStruct x) 
-// { 
-//     x.op(10);
-// }
+void Rectangle::do_with_area(VoidAreaHandlerStruct x) 
+{ 
+    x.op(10);
+}
 
 // Example 3
 // void Rectangle::do_with_area(area_handler callback, void* context) 
@@ -62,4 +62,9 @@ double Rectangle::do_with_area(AreaHandlerStruct x)
 // {
 //     *op(10);
 // }
-// 
+//
+
+int normal_add(int t, int u) { return t + u; }
+
+
+
