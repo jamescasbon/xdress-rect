@@ -52,4 +52,4 @@ auto template_add(T t, U u) -> decltype(t + u)
     return t + u;
 }
 
-extern int iitadd = template_add<int, int>(3, 6);
+int iitadd = template_add<int, int>(3, 6);

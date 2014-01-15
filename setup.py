@@ -9,8 +9,7 @@ incdirs = [os.path.join(os.getcwd()), np.get_include()]  # DIFF: removed 'src'
 
 ext_modules = [
     Extension("rect.rectangle", ["rect/rectangle.pyx", ],
-    	      include_dirs=incdirs, language="c++",
-              libraries=['rectangle']),
+    	      include_dirs=incdirs, language="c++"),
 
     Extension("rect.xdress_extra_types", ["rect/xdress_extra_types.pyx"], # DIFF: s/rect/xdress/
               include_dirs=incdirs, language="c++"),

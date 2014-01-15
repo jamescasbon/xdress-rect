@@ -1,5 +1,6 @@
 import os
-clang_includes = [os.path.expanduser('~/Src/llvm/Debug+Asserts/lib/clang/3.4/include')]
+
+extra_parser_args = ['-std=c++11']
 
 package = 'rect'
 classes = [
