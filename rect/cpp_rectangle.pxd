@@ -8,38 +8,7 @@
 ################################################
 
 
-from cython.operator cimport dereference as deref
 from rect cimport cpp_rectangle
-
-cdef extern from "src/rectangle.h" namespace "shapes":
-
-    cdef cppclass AreaHandlerStruct:
-        # constructors
-        AreaHandlerStruct() except +
-
-        # attributes
-        double (*op)(int)
-
-        # methods
-
-        pass
-
-
-
-cdef extern from "src/rectangle.h" namespace "shapes":
-
-    cdef cppclass VoidAreaHandlerStruct:
-        # constructors
-        VoidAreaHandlerStruct() except +
-
-        # attributes
-        void (*op)(int)
-
-        # methods
-
-        pass
-
-
 
 cdef extern from "src/rectangle.h" namespace "shapes":
 
@@ -55,8 +24,6 @@ cdef extern from "src/rectangle.h" namespace "shapes":
         int y1
 
         # methods
-        double do_with_area(AreaHandlerStruct) except +
-        void do_with_area(VoidAreaHandlerStruct) except +
         int getArea() except +
         int getHeight() except +
         int getLength() except +
@@ -66,16 +33,16 @@ cdef extern from "src/rectangle.h" namespace "shapes":
 
 
 # function signatures
-cdef extern from "src/rectangle.h" :
+cdef extern from "src/rectangle.h" namespace "shapes":
 
-    int normal_add(int, int) except +
+    Rectangle empty_rect
 
 
 
 # function signatures
-cdef extern from "src/rectangle.h" :
+cdef extern from "src/rectangle.h" namespace "shapes":
 
-    int template_add_int_int "template_add< int, int >" (int, int) except +
+    Rectangle * unit_square
 
 
 

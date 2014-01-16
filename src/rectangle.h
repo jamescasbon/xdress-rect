@@ -29,10 +29,10 @@ namespace shapes {
         void move(int dx, int dy);
 
         // Example 1. 
-        double do_with_area(AreaHandlerStruct x);
+        // double do_with_area(AreaHandlerStruct x);
 
         // Example 2.
-        void do_with_area(VoidAreaHandlerStruct x);
+        // void do_with_area(VoidAreaHandlerStruct x);
 
         // Example 3
         // void do_with_area(area_handler, void*);
@@ -42,14 +42,19 @@ namespace shapes {
 
     };
 
+    Rectangle* unit_square = new Rectangle(0, 0, 1, 1);
+    Rectangle empty_rect;
+
 }
-
-int normal_add(int, int);
-
-template<class T, class U>
-auto template_add(T t, U u) -> decltype(t + u)
-{
-    return t + u;
-}
-
-int iitadd = template_add<int, int>(3, 6);
+// 
+// int normal_add(int, int);
+// 
+// template<class T, class U>
+// auto template_add(T t, U u) -> decltype(t + u)
+// {
+//     return t + u;
+// }
+// 
+// int iitadd = template_add<int, int>(3, 6);
+// 
+// 

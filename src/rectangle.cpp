@@ -39,17 +39,17 @@ void Rectangle::move(int dx, int dy)
     y1 += dy;
 }
 
-// Example 1
-double Rectangle::do_with_area(AreaHandlerStruct x) 
-{ 
-    return x.op(10);
-}
-
-// Example 2
-void Rectangle::do_with_area(VoidAreaHandlerStruct x) 
-{ 
-    x.op(10);
-}
+// // Example 1
+// double Rectangle::do_with_area(AreaHandlerStruct x) 
+// { 
+//     return x.op(10);
+// }
+// 
+// // Example 2
+// void Rectangle::do_with_area(VoidAreaHandlerStruct x) 
+// { 
+//     x.op(10);
+// }
 
 // Example 3
 // void Rectangle::do_with_area(area_handler callback, void* context) 
