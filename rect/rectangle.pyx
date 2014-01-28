@@ -10,15 +10,12 @@
 """
 from libc.stdlib cimport free
 
-unit_square = _wrap_existing_Rectangle(cpp_rectangle.unit_square)
-
-empty_rect = _wrap_existing_Rectangle(&cpp_rectangle.empty_rect)
 
 
 
 
 cdef class Rectangle:
-    """no docstring for {'tarbase': 'rectangle', 'tarname': 'Rectangle', 'language': 'c++', 'srcname': 'Rectangle', 'sidecars': (), 'incfiles': ('src/rectangle.h',), 'srcfiles': ('src/rectangle.cpp', 'src/rectangle.h')}, please file a bug report!"""
+    """no docstring for {'sidecars': (), 'tarbase': 'rectangle', 'tarname': 'Rectangle', 'language': 'c++', 'srcname': 'Rectangle', 'incfiles': ('src/rectangle.h',), 'srcfiles': ('src/rectangle.cpp', 'src/rectangle.h')}, please file a bug report!"""
 
 
 
@@ -27,32 +24,27 @@ cdef class Rectangle:
         self._inst = NULL
         self._free_inst = True
 
-
-
-
         # cached property defaults
 
 
-    def _rectangle_rectangle_0(self, ):
+    def _rectangle_rectangle_0(self):
         """Rectangle(self)
         """
         self._inst = new cpp_rectangle.Rectangle()
-
-
-    def _rectangle_rectangle_1(self, x0, y0, x1, y1):
-        """Rectangle(self, x0, y0, x1, y1)
+    
+    
+    def _rectangle_rectangle_1(self, X0, Y0, X1, Y1):
+        """Rectangle(self, X0, Y0, X1, Y1)
         """
-        self._inst = new cpp_rectangle.Rectangle(<int> x0, <int> y0, <int> x1, <int> y1)
-
-
+        self._inst = new cpp_rectangle.Rectangle(<int> X0, <int> Y0, <int> X1, <int> Y1)
+    
+    
     _rectangle_rectangle_0_argtypes = frozenset()
-    _rectangle_rectangle_1_argtypes = frozenset(((0, int), (1, int), (2, int), (3, int), ("x0", int), ("y0", int), ("x1", int), ("y1", int)))
-
+    _rectangle_rectangle_1_argtypes = frozenset(((0, int), (1, int), (2, int), (3, int), ("X0", int), ("Y0", int), ("X1", int), ("Y1", int)))
+    
     def __init__(self, *args, **kwargs):
-        """Rectangle(self, x0, y0, x1, y1)
+        """Rectangle(self, X0, Y0, X1, Y1)
         """
-        if '__skip_init' in kwargs:
-            return
         types = set([(i, type(a)) for i, a in enumerate(args)])
         types.update([(k, type(v)) for k, v in kwargs.items()])
         # vtable-like dispatch for exactly matching types
@@ -74,7 +66,7 @@ cdef class Rectangle:
         except (RuntimeError, TypeError, NameError):
             pass
         raise RuntimeError('method __init__() could not be dispatched')
-
+    
     def __dealloc__(self):
         if self._free_inst:
             free(self._inst)
@@ -84,81 +76,72 @@ cdef class Rectangle:
         """no docstring for x0, please file a bug report!"""
         def __get__(self):
             return int((<cpp_rectangle.Rectangle *> self._inst).x0)
-
+    
         def __set__(self, value):
             (<cpp_rectangle.Rectangle *> self._inst).x0 = <int> value
-
-
+    
+    
     property x1:
         """no docstring for x1, please file a bug report!"""
         def __get__(self):
             return int((<cpp_rectangle.Rectangle *> self._inst).x1)
-
+    
         def __set__(self, value):
             (<cpp_rectangle.Rectangle *> self._inst).x1 = <int> value
-
-
+    
+    
     property y0:
         """no docstring for y0, please file a bug report!"""
         def __get__(self):
             return int((<cpp_rectangle.Rectangle *> self._inst).y0)
-
+    
         def __set__(self, value):
             (<cpp_rectangle.Rectangle *> self._inst).y0 = <int> value
-
-
+    
+    
     property y1:
         """no docstring for y1, please file a bug report!"""
         def __get__(self):
             return int((<cpp_rectangle.Rectangle *> self._inst).y1)
-
+    
         def __set__(self, value):
             (<cpp_rectangle.Rectangle *> self._inst).y1 = <int> value
-
-
+    
+    
     # methods
-    def getArea(self, ):
+    def getArea(self):
         """getArea(self)
         no docstring for getArea, please file a bug report!"""
         cdef int rtnval
         rtnval = (<cpp_rectangle.Rectangle *> self._inst).getArea()
         return int(rtnval)
-
-
-    def getHeight(self, ):
+    
+    
+    def getHeight(self):
         """getHeight(self)
         no docstring for getHeight, please file a bug report!"""
         cdef int rtnval
         rtnval = (<cpp_rectangle.Rectangle *> self._inst).getHeight()
         return int(rtnval)
-
-
-    def getLength(self, ):
+    
+    
+    def getLength(self):
         """getLength(self)
         no docstring for getLength, please file a bug report!"""
         cdef int rtnval
         rtnval = (<cpp_rectangle.Rectangle *> self._inst).getLength()
         return int(rtnval)
-
-
+    
+    
     def move(self, dx, dy):
         """move(self, dx, dy)
         no docstring for move, please file a bug report!"""
         (<cpp_rectangle.Rectangle *> self._inst).move(<int> dx, <int> dy)
-
-
-
+    
+    
+    
 
     pass
-
-
-
-cdef _wrap_existing_Rectangle(cpp_rectangle.Rectangle * c_inst):
-    py_inst = Rectangle(__skip_init=True)
-    py_inst._inst = c_inst
-    py_inst._free_inst = False
-    return py_inst
-
 
 
 

@@ -8,7 +8,7 @@
 ################################################
 
 
-from rect cimport cpp_rectangle
+
 
 cdef extern from "src/rectangle.h" namespace "shapes":
 
@@ -29,20 +29,6 @@ cdef extern from "src/rectangle.h" namespace "shapes":
         int getLength() except +
         void move(int, int) except +
         pass
-
-
-
-# function signatures
-cdef extern from "src/rectangle.h" namespace "shapes":
-
-    Rectangle empty_rect
-
-
-
-# function signatures
-cdef extern from "src/rectangle.h" namespace "shapes":
-
-    Rectangle * unit_square
 
 
 

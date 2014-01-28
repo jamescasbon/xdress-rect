@@ -39,7 +39,6 @@ void Rectangle::move(int dx, int dy)
     y1 += dy;
 }
 
-// // Example 1
 // double Rectangle::do_with_area(AreaHandlerStruct x) 
 // { 
 //     return x.op(10);
@@ -64,7 +63,7 @@ void Rectangle::move(int dx, int dy)
 // }
 //
 
-int normal_add(int t, int u) { return t + u; }
+// int normal_add(int t, int u) { return t + u; }
 
 
 

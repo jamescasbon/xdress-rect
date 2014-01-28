@@ -23,6 +23,8 @@ stlcontainers = [
 ]
 
 variables = [
-    ('unit_square', 'src/rectangle.*'),
-    ('empty_rect', 'src/rectangle.*'),
+    # ('MY_CONST', 'src/rectangle.*'),
+    # ('a_pointer', 'src/rectangle.*'),
+    # ('an_instance', 'src/rectangle.*'),
+    # ('a_constarray', 'src/rectangle.*'),
 ]

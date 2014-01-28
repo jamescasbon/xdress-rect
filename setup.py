@@ -25,6 +25,7 @@ ext_modules = [
 for module in ext_modules:
     module.extra_compile_args = ['--std=c++11'];
     module.libraries = ['rectangle']
+    module.gdb_debug = True
 
 setup(
   name = 'rect',

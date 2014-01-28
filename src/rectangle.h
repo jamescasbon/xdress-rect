@@ -42,8 +42,9 @@ namespace shapes {
 
     };
 
-    Rectangle* unit_square = new Rectangle(0, 0, 1, 1);
-    Rectangle empty_rect;
+    // Rectangle* a_pointer = new Rectangle(0, 0, 1, 1);
+    // Rectangle a_constarray[2];
+    // Rectangle an_instance;
 
 }
 // 
